@@ -37,7 +37,25 @@ else
     echo -e "User Aktif: ${RED}Tidak Terdeteksi${NC}"
 fi
 
+echo -e "\n=== CEK PRINTER ==="
 
+PRINTER_LIST=$(lpstat -p 2>/dev/null|grep -E 'KPOS')
+
+if [[ -n "$PRINTER_LIST" ]]; then
+    echo -e "Daftar Printer Aktif:"
+    echo "$PRINTER_LIST" | awk '{print "- " $2 " (" $3 ")"}'
+else
+    echo -e "${RED}Tidak ada printer terdeteksi.${NC}"
+fi
+
+# Cek printer default
+DEFAULT_PRINTER=$(lpoptions -d 2>/dev/null | awk '{print $2}')
+
+if [[ -n "$DEFAULT_PRINTER" ]]; then
+    echo -e "Default Printer: ${GREEN}${DEFAULT_PRINTER}${NC}"
+else
+    echo -e "Default Printer: ${RED}Tidak Diset${NC}"
+fi
 
 echo
 echo -e "=== CEK STATUS SERVICE STAMPS==="
