@@ -27,6 +27,16 @@ if [[ -n "$DISPLAY_SERVER" ]]; then
 else
     echo -e "Display Server: ${RED}Tidak Terdeteksi (Xorg, Wayland, atau Weston tidak berjalan)${NC}"
 fi
+echo
+echo -e "=== CEK User KIOSK ==="
+USER_DISPLAY=$(who | grep -Ei 'tty|:0|:1' | awk '{print $1}' | sort | uniq | head -n 1)
+
+if [[ -n "$USER_DISPLAY" ]]; then
+    echo -e "User Aktif: ${GREEN}${USER_DISPLAY}${NC}"
+else
+    echo -e "User Aktif: ${RED}Tidak Terdeteksi${NC}"
+fi
+
 
 
 echo
