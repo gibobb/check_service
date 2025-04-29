@@ -18,6 +18,15 @@ else
 fi
 
 echo
+echo -e "=== CEK DISPLAY KIOSK ==="
+
+if ps -e -o comm= | grep -Ei 'Xorg|wayland|weston' > /dev/null; then
+    echo -e "Display Server: ${GREEN}Aktif (Xorg, Wayland, atau Weston terdeteksi)${NC}"
+else
+    echo -e "Display Server: ${RED}Tidak Terdeteksi (Xorg, Wayland, atau Weston tidak berjalan)${NC}"
+fi
+
+echo
 echo -e "=== CEK STATUS SERVICE STAMPS==="
 
 check_service2() {
