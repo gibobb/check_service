@@ -48,10 +48,10 @@ else
     echo -e "${RED}Tidak ada printer terdeteksi.${NC}"
 fi
 
-# Cek printer default
-DEFAULT_PRINTER=$(lpstat -d)
+DEFAULT_OUTPUT=$(lpstat -d 2>/dev/null)
 
-if [[ -n "$DEFAULT_PRINTER" ]]; then
+if echo "$DEFAULT_OUTPUT" | grep -qi 'default destination'; then
+    DEFAULT_PRINTER=$(echo "$DEFAULT_OUTPUT" | awk -F': ' '{print $2}')
     echo -e "Default Printer: ${GREEN}${DEFAULT_PRINTER}${NC}"
 else
     echo -e "Default Printer: ${RED}Tidak Diset${NC}"
@@ -124,4 +124,5 @@ if [[ $? -eq 0 ]]; then
 else
     echo -e "Internet: ${RED}TIDAK TERHUBUNG${NC} (Ping gagal)"
 fi
+echo
 	
