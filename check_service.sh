@@ -49,7 +49,7 @@ else
 fi
 
 # Cek printer default
-DEFAULT_PRINTER=$(lpoptions -d 2>/dev/null | awk '{print $2}')
+DEFAULT_PRINTER=$(lpstat -d)
 
 if [[ -n "$DEFAULT_PRINTER" ]]; then
     echo -e "Default Printer: ${GREEN}${DEFAULT_PRINTER}${NC}"
@@ -123,8 +123,5 @@ if [[ $? -eq 0 ]]; then
     echo -e "Internet: ${GREEN}TERHUBUNG${NC} (Latency: ${LATENCY} ms)"
 else
     echo -e "Internet: ${RED}TIDAK TERHUBUNG${NC} (Ping gagal)"
-fi
-echo
-    echo -e "update-notifier ${YELLOW}tidak ditemukan${NC}."
 fi
 	
