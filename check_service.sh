@@ -97,13 +97,6 @@ else
     echo -e "Internet: ${RED}TIDAK TERHUBUNG${NC} (Ping gagal)"
 fi
 echo
-
-echo -e "=== HAPUS update-notifier ==="
-if dpkg -l | grep -qw "update-notifier"; then
-    echo "update-notifier terdeteksi, menghapus..."
-    sudo apt remove -y update-notifier
-    echo -e "update-notifier telah ${GREEN}dihapus${NC}."
-else
     echo -e "update-notifier ${YELLOW}tidak ditemukan${NC}."
 fi
 	
