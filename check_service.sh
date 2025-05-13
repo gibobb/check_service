@@ -63,18 +63,6 @@ fi
 echo
 echo -e "=== CHECKING STAMPS SERVICES ==="
 
-echo
-echo -e "=== CHECKING CONNECTION OMNI (PING richeese.omni.fm) ==="
-PING_RESULT=$(ping -c 1 -W 2 richeese.omni.fm 2>/dev/null)
-
-if [[ $? -eq 0 ]]; then
-    LATENCY=$(echo "$PING_RESULT" | grep 'time=' | awk -F'time=' '{print $2}' | cut -d' ' -f1)
-    echo -e "Connection Omni: ${GREEN}CONNECTED${NC} (Latency: ${LATENCY} ms)"
-else
-    echo -e "Connection Omni: ${RED}NOT CONNECTED${NC} (Ping failed)"
-fi
-echo
-
 check_service2() {
     SERVICE_NAME="$1"
     echo "Service: $SERVICE_NAME"
@@ -140,6 +128,19 @@ else
     echo -e "Internet: ${RED}NOT CONNECTED${NC} (Ping failed)"
 fi
 echo
+
+echo
+echo -e "=== CHECKING CONNECTION OMNI (PING richeese.omni.fm) ==="
+PING_RESULT=$(ping -c 1 -W 2 richeese.omni.fm 2>/dev/null)
+
+if [[ $? -eq 0 ]]; then
+    LATENCY=$(echo "$PING_RESULT" | grep 'time=' | awk -F'time=' '{print $2}' | cut -d' ' -f1)
+    echo -e "Connection Omni: ${GREEN}CONNECTED${NC} (Latency: ${LATENCY} ms)"
+else
+    echo -e "Connection Omni: ${RED}NOT CONNECTED${NC} (Ping failed)"
+fi
+echo
+
 
 echo -e "=== CHECKING EDC DEVICE (INGENICO) ==="
 EDC_DEVICES=$(lsusb | grep -i 'INGENICO' | awk '{for(i=7;i<=NF;++i) printf $i" "; print ""}')
