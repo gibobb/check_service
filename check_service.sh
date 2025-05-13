@@ -62,6 +62,7 @@ fi
 
 echo
 echo -e "=== CHECKING STAMPS SERVICES ==="
+
 echo
 echo -e "=== CHECKING CONNECTION OMNI (PING richeese.omni.fm) ==="
 PING_RESULT=$(ping -c 1 -W 2 richeese.omni.fm 2>/dev/null)
