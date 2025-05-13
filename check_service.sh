@@ -59,6 +59,10 @@ else
     echo -e "Default Printer: ${RED}Not Set${NC}"
 fi
 
+
+echo
+echo -e "=== CHECKING STAMPS SERVICES ==="
+echo
 echo -e "=== CHECKING CONNECTION OMNI (PING richeese.omni.fm) ==="
 PING_RESULT=$(ping -c 1 -W 2 richeese.omni.fm 2>/dev/null)
 
@@ -69,9 +73,6 @@ else
     echo -e "Connection Omni: ${RED}NOT CONNECTED${NC} (Ping failed)"
 fi
 echo
-
-echo
-echo -e "=== CHECKING STAMPS SERVICES ==="
 
 check_service2() {
     SERVICE_NAME="$1"
