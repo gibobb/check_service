@@ -142,7 +142,7 @@ fi
 echo
 
 
-echo -e "=== CHECKING EDC DEVICE (INGENICO) ==="
+echo -e "=== CHECKING EDC DEVICE ==="
 EDC_DEVICES=$(lsusb | grep -Ei 'ingenico|verifone|pax|castles|newland|spire|bitel|centerm' | awk '{for(i=7;i<=NF;++i) printf $i" "; print ""}')
 
 if [[ -n "$EDC_DEVICES" ]]; then
