@@ -1,29 +1,28 @@
 #!/bin/bash
 
-# Nama asli dan nama baru
-SOURCE_URL="https://raw.githubusercontent.com/gibobb/check_service/main/check_service.sh"
-TEMP_FILE="check_service.sh"
+set -e
+
+SOURCE_URL="https://raw.githubusercontent.com/gibobb/check_service/main/check_service"
 FINAL_NAME="check_service"
+INSTALL_PATH="/usr/bin/$FINAL_NAME"
+LINK_PATH="/usr/local/bin/$FINAL_NAME"
 
-# Download dari GitHub
-echo "Downloading script from GitHub..."
-curl -L -o "$TEMP_FILE" "$SOURCE_URL"
+echo "Mengunduh dan memasang $FINAL_NAME..."
 
-# Cek apakah file berhasil di-download
-if [ ! -f "$TEMP_FILE" ]; then
-    echo "Download failed. File $TEMP_FILE not found."
+# Download silently
+curl -sSL -o "/tmp/$FINAL_NAME" "$SOURCE_URL"
+
+# Pastikan file berhasil diunduh
+if [ ! -f "/tmp/$FINAL_NAME" ]; then
+    echo "Gagal mengunduh $FINAL_NAME."
     exit 1
 fi
 
-# Ubah nama file
-mv "$TEMP_FILE" "$FINAL_NAME"
+# Install silently
+sudo install -m 755 "/tmp/$FINAL_NAME" "$INSTALL_PATH"
+sudo ln -sf "$INSTALL_PATH" "$LINK_PATH"
 
-# Ubah menjadi executable
-chmod +x "$FINAL_NAME"
+# Bersihkan
+rm -f "/tmp/$FINAL_NAME"
 
-# Pindahkan ke /usr/bin/ (perlu sudo)
-echo "Moving $FINAL_NAME to /usr/bin/..."
-sudo mv "$FINAL_NAME" /usr/bin/
-
-# Konfirmasi
-echo "Done. You can now run the script by typing: check_service"
+echo "Instalasi selesai. Jalankan: $FINAL_NAME"
