@@ -8,7 +8,7 @@ PATH_BIN2="/usr/local/bin/check_service"
 
 # Download dari GitHub
 echo "Downloading script from GitHub..."
-curl -L -o "$FINAL_NAME" "$SOURCE_URL"
+curl -L "$FINAL_NAME" "$SOURCE_URL"
 
 # Cek apakah file berhasil di-download
 if [ ! -f "$FINAL_NAME" ]; then
