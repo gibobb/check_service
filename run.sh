@@ -8,16 +8,16 @@ PATH_BIN2="/usr/local/bin/check_service"
 
 # Download dari GitHub
 echo "Downloading script from GitHub..."
-curl -L -o "$TEMP_FILE" "$SOURCE_URL"
+curl -L -o "$FINAL_NAME" "$SOURCE_URL"
 
 # Cek apakah file berhasil di-download
-if [ ! -f "$TEMP_FILE" ]; then
-    echo "Download failed. File $TEMP_FILE not found."
+if [ ! -f "$FINAL_NAME" ]; then
+    echo "Download failed. File $FINAL_NAME not found."
     exit 1
 fi
 
 # Ubah nama file
-sudo install -m 755 "$TEMP_FILE" /usr/bin/check_service
+sudo install -m 755 "$FINAL_NAME" /usr/bin/check_service
 sudo ln -sf "$PATH_BIN" "$PATH_BIN2"
 
 # Konfirmasi
