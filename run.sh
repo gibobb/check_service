@@ -4,7 +4,7 @@
 TMP_DIR=$(mktemp -d)
 
 # Unduh install.sh ke direktori sementara
-curl -sL -o "$TMP_DIR/install.sh" https://raw.githubusercontent.com/gibobb/rki_checker/main/install.sh
+curl -sL -o "$TMP_DIR/install.sh" https://raw.githubusercontent.com/gibobb/check_service/main/install.sh
 
 # Jadikan executable
 chmod +x "$TMP_DIR/install.sh"
